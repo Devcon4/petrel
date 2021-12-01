@@ -1,4 +1,6 @@
 import '@material/mwc-icon-button';
+import '@material/mwc-ripple';
+import '@material/mwc-textfield';
 import { css, html, LitElement } from 'lit';
 import { customElement, query, state } from 'lit/decorators.js';
 import { RouterSlot } from 'router-slot';
@@ -7,6 +9,7 @@ import { async } from './services/decoratorUtils';
 import { routes } from './services/routes';
 import themeState, { ThemeType } from './services/themeState';
 import { flexHostStyles, globalStyles } from './styles/globalStyles';
+
 
 @customElement('cara-app')
 export default class AppElement extends LitElement {

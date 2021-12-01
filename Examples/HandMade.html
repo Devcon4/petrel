@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head></head>
+  <body>
+
+    <template id="card-template">
+      <div class="card">
+        <div class="title"></div>
+      </div>
+    </template>
+
+    <script>
+      class PtrlCard extends HTMLElement {
+
+        get cardName() {
+          return this.getAttribute('cardName');
+        }
+
+        connectedCallback() {
+          const root = this.attachShadow({mode: 'open'});
+
+          const frag = document.getElementById('card-template');
+          const template = document.importNode(frag.content, true);
+
+          template.querySelector('.title').innerHTML = this.cardName;
+          const styles = document.createElement('style');
+
+          styles.innerHTML = `
+            .card {
+              color: black;
+              padding: 12px;
+              margin-bottom: 12px;
+              background-color: rgb(170 221 169);
+              font-family: sans-serif;
+              border-radius: 5px;
+              filter: drop-shadow(0px 2px 3px rgba(0,0,0,.4));
+            }
+          `;
+
+          root.appendChild(styles);
+          root.appendChild(template);
+        }
+      }
+
+      window.customElements.define('ptrl-card', PtrlCard);
+    </script>
+
+    <ptrl-card cardName="test card one!"></ptrl-card>
+    <ptrl-card cardName="test card two!"></ptrl-card>
+  </body>
+</html>
